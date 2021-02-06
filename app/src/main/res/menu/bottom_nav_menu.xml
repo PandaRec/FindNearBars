@@ -30,7 +30,7 @@
         android:title=""/>
     <item
         android:id="@+id/navigation_settings"
-        android:icon="@drawable/ic_settings_gray"
+        android:icon="@drawable/ic_settings_new_gray"
         android:title=""/>
 
 </menu>
