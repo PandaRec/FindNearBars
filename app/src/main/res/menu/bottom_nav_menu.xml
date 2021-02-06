@@ -16,4 +16,21 @@
         android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/title_notifications" />
 
+    <item
+        android:id="@+id/navigation_search"
+        android:icon="@drawable/ic_search_gray"
+        android:title=""/>
+    <item
+        android:id="@+id/navigation_near"
+        android:icon="@drawable/ic_near_gray"
+        android:title=""/>
+    <item
+        android:id="@+id/navigation_favourite"
+        android:icon="@drawable/ic_favourite_gray"
+        android:title=""/>
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/ic_settings_gray"
+        android:title=""/>
+
 </menu>

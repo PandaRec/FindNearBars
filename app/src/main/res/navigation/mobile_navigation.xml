@@ -18,8 +18,27 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.findnearbars.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_search"
+        android:name="com.example.findnearbars.ui.search.SearchFragment"
+        android:label=""
+        tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/navigation_near"
+        android:name="com.example.findnearbars.ui.near.NearFragment"
+        android:label=""
+        tools:layout="@layout/fragment_near" />
+
+    <fragment
+        android:id="@+id/navigation_favourite"
+        android:name="com.example.findnearbars.ui.favourite.FavouriteFragment"
+        android:label=""
+        tools:layout="@layout/fragment_favourite" />
+
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.example.findnearbars.ui.settings.SettingsFragment"
+        android:label=""
+        tools:layout="@layout/fragment_settings" />
+
 </navigation>
