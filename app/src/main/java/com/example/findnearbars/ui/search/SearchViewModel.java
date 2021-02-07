@@ -13,4 +13,5 @@ public class SearchViewModel extends ViewModel {
     public MutableLiveData<String> getmText() {
         return mText;
     }
+
 }
