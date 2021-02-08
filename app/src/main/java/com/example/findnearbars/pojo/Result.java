@@ -2,11 +2,14 @@ package com.example.findnearbars.pojo;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
+import com.example.findnearbars.converters.ResultConverter;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
+@TypeConverters({ResultConverter.class})
 @Entity(tableName = "items")
 public class Result {
     @PrimaryKey(autoGenerate = true)

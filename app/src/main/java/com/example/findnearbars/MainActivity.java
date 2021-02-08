@@ -1,7 +1,11 @@
 package com.example.findnearbars;
 
 import android.os.Bundle;
+import android.util.Log;
 
+import com.example.findnearbars.converters.ResultConverter;
+import com.example.findnearbars.pojo.Image;
+import com.example.findnearbars.pojo.Source;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +14,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private MainViewModel mainViewModel;
@@ -29,9 +35,10 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-         //mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
-         mainViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(MainViewModel.class);
-         mainViewModel.loadData(1);
+         //mainViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(MainViewModel.class);
+         //mainViewModel.loadData(1);
+
+
     }
 
 }

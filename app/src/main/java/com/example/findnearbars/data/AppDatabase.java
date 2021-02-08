@@ -13,7 +13,7 @@ import com.example.findnearbars.pojo.Result;
 @Database(entities = {Result.class},version = 1,exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase database;
-    private static Object LOCK = new Object();
+    private static final Object LOCK = new Object();
 
     public static AppDatabase getInstance(Context context){
         synchronized (LOCK) {
