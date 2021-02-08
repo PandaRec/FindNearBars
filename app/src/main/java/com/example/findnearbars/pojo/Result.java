@@ -1,11 +1,16 @@
 package com.example.findnearbars.pojo;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-
+@Entity(tableName = "items")
 public class Result {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     @SerializedName("title")
     @Expose
     private String title;
@@ -137,5 +142,13 @@ public class Result {
 
     public void setImages(List<Image> images) {
         this.images = images;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

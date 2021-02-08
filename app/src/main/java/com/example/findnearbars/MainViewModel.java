@@ -30,7 +30,7 @@ public class MainViewModel extends AndroidViewModel {
         compositeDisposable = new CompositeDisposable();
     }
 
-    @SuppressLint("CheckResult")
+    @SuppressLint("CheckResult") 
     public void loadData(int currentPage) {
         page= currentPage;
         ApiFactory apiFactory = ApiFactory.getInstance();
@@ -51,6 +51,7 @@ public class MainViewModel extends AndroidViewModel {
             @Override
             public void accept(Throwable throwable) throws Exception {
                 Log.i("my_ex_MainViewModel", throwable.getMessage());
+                return;
             }
         });
         compositeDisposable.add(disposable);
