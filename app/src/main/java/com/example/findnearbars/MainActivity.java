@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
          //mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
          mainViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(MainViewModel.class);
-         mainViewModel.loadData();
+         mainViewModel.loadData(1);
     }
 
 }
