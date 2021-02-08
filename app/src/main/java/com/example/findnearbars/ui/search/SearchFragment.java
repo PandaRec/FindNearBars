@@ -1,6 +1,7 @@
 package com.example.findnearbars.ui.search;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,12 +35,14 @@ public class SearchFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new SearchAdapter();
         recyclerView.setAdapter(adapter);
+
         searchViewModel.getResults().observe(getViewLifecycleOwner(), new Observer<List<Result>>() {
             @Override
             public void onChanged(List<Result> results) {
-                //adapter.setResults(results);
+                adapter.setResults(results);
             }
         });
+
         return root;
     }
 }

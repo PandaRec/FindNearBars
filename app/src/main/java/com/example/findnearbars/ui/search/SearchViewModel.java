@@ -20,9 +20,10 @@ public class SearchViewModel extends ViewModel {
     private LiveData<List<Result>> results;
     private AppDatabase database;
 
-    public SearchViewModel() {
-        results = new MutableLiveData();
-    }
+//    public SearchViewModel() {
+//        results = new MutableLiveData();
+//    }
+
     public void createViewModel(Context context){
         database = AppDatabase.getInstance(context);
         results = database.mainDao().getAllResults();
@@ -33,7 +34,5 @@ public class SearchViewModel extends ViewModel {
         return results;
     }
 
-    public void setResults(LiveData<List<Result>> results) {
-        this.results = results;
-    }
+
 }

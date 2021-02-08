@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 
 import com.example.findnearbars.converters.ResultConverter;
 import com.example.findnearbars.pojo.Image;
+import com.example.findnearbars.pojo.Result;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,12 @@ public class LoadingActivity extends AppCompatActivity {
 //        Log.i("d","d");
 
         MainViewModel mainViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(MainViewModel.class);
+//        mainViewModel.getResults().observe(this, new Observer<List<Result>>() {
+//            @Override
+//            public void onChanged(List<Result> results) {
+//                Log.i("my_res","ok");
+//            }
+//        });
         mainViewModel.loadData(1);
         mainViewModel.getIsDownloadingFinished().observe(this, new Observer<Boolean>() {
             @Override
