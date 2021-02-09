@@ -51,7 +51,8 @@ public class MainViewModel extends AndroidViewModel {
             public void accept(Response response) throws Exception {
                 Log.i("my_ok", "ok"+page);
                 if(response.getNext()!=null){
-                    deleteAllResults();
+                    if(page==1)
+                        deleteAllResults();
                     insertListResults(response.getResults());
                     loadData(page+=1);
                 }else {
