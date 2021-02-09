@@ -7,13 +7,16 @@
 
     <SearchView
         android:id="@+id/searchView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:iconifiedByDefault="false"
-        android:layout_margin="8dp"/>
+        android:layout_margin="8dp"
+        android:queryHint="Начните вводить название места"
+        android:focusable="false"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewShortView"

@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,23 @@ public class SearchFragment extends Fragment {
         searchViewModel.createViewModel(getContext());
         View root = inflater.inflate(R.layout.fragment_search,container,false);
         RecyclerView recyclerView = root.findViewById(R.id.recyclerViewShortView);
+        SearchView searchView = root.findViewById(R.id.searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //click to find smth
+                Log.i("my_onQuery_submit",query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //steel typing
+                Log.i("my_onQuery_change",newText);
+
+                return false;
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new SearchAdapter();
         recyclerView.setAdapter(adapter);

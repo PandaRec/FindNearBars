@@ -27,6 +27,10 @@ public class LoadingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().hide();
+        }
+
 //        Image image = new Image();
 //        image.setImage("lolwerfwefwfwefew");
 //        image.setSource(null);
@@ -41,7 +45,7 @@ public class LoadingActivity extends AppCompatActivity {
 //        List<Image> imgs = converter.imageStringToImages(jsonImages);
 //        Log.i("d","d");
         ProgressBar progressBar = findViewById(R.id.progressBarHorizontal);
-        progressBar.setMax(12);
+        progressBar.setMax(10);
         progressBar.setProgress(0);
 
 
@@ -52,7 +56,7 @@ public class LoadingActivity extends AppCompatActivity {
 //                Log.i("my_res","ok");
 //            }
 //        });
-        mainViewModel.loadData(1);
+        //mainViewModel.loadData(1);
         mainViewModel.getIsDownloadingFinished().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
@@ -69,5 +73,8 @@ public class LoadingActivity extends AppCompatActivity {
 
             }
         });
+
+        Intent intent = new Intent(LoadingActivity.this,MainActivity.class);
+        startActivity(intent);
     }
 }
