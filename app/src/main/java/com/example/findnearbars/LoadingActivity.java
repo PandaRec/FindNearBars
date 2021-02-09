@@ -46,7 +46,7 @@ public class LoadingActivity extends AppCompatActivity {
 
 
         MainViewModel mainViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(MainViewModel.class);
-//        mainViewModel.getResultaddeds().observe(this, new Observer<List<Result>>() {
+//        mainViewModel.getResults().observe(this, new Observer<List<Result>>() {
 //            @Override
 //            public void onChanged(List<Result> results) {
 //                Log.i("my_res","ok");
