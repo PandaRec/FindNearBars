@@ -14,6 +14,7 @@ import com.example.findnearbars.MainViewModel;
 import com.example.findnearbars.data.AppDatabase;
 import com.example.findnearbars.pojo.Result;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchViewModel extends ViewModel {
@@ -34,5 +35,13 @@ public class SearchViewModel extends ViewModel {
         return results;
     }
 
-
+public List<Result> getResultsByName(List<Result> inputResults,String searchName){
+        List<Result> outputResults = new ArrayList<>();
+        for(Result result : inputResults){
+            if(searchName!=null && !searchName.equals("") && result.getTitle().toLowerCase().startsWith(searchName.toLowerCase()) ){
+                outputResults.add(result);
+            }
+        }
+        return outputResults;
+}
 }

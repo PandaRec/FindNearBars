@@ -15,20 +15,23 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.PrimaryKey;
 
 import com.example.findnearbars.R;
 import com.example.findnearbars.adapters.SearchAdapter;
 import com.example.findnearbars.pojo.Result;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchFragment extends Fragment {
     private SearchViewModel searchViewModel;
     private SearchAdapter adapter;
+    private List<Result> myResults;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //searchViewModel = new ViewModelProvider(this).get(SearchViewModel.class);
+        myResults = new ArrayList<>();
         searchViewModel = new ViewModelProvider(this).get(SearchViewModel.class);
         searchViewModel.createViewModel(getContext());
         View root = inflater.inflate(R.layout.fragment_search,container,false);
@@ -46,6 +49,7 @@ public class SearchFragment extends Fragment {
             public boolean onQueryTextChange(String newText) {
                 //steel typing
                 Log.i("my_onQuery_change",newText);
+                adapter.setResults(searchViewModel.getResultsByName(myResults,newText));
 
                 return false;
             }
@@ -57,9 +61,11 @@ public class SearchFragment extends Fragment {
         searchViewModel.getResults().observe(getViewLifecycleOwner(), new Observer<List<Result>>() {
             @Override
             public void onChanged(List<Result> results) {
-                adapter.setResults(results);
+                myResults.addAll(results);
             }
         });
+
+
 
         return root;
     }

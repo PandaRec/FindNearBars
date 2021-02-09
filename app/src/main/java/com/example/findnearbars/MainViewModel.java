@@ -18,6 +18,7 @@ import com.example.findnearbars.pojo.Response;
 import com.example.findnearbars.pojo.Result;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import io.reactivex.Scheduler;
 import io.reactivex.disposables.CompositeDisposable;
@@ -86,13 +87,11 @@ public class MainViewModel extends AndroidViewModel {
         return results;
     }
 
-    public void setResults(LiveData<List<Result>> results) {
-        this.results = results;
-    }
 
     public MutableLiveData<Integer> getCounterForProgressBar() {
         return counterForProgressBar;
     }
+
 
     public void insertResult(Result result){
         new InsertResultTask().execute(result);
@@ -131,6 +130,7 @@ public class MainViewModel extends AndroidViewModel {
             return null;
         }
     }
+
 
     @Override
     protected void onCleared() {
