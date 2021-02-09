@@ -33,12 +33,14 @@ public class MainViewModel extends AndroidViewModel {
     private MutableLiveData<Boolean> isDownloadingFinished;
     private static AppDatabase database;
     private int page = 1;
+    private MutableLiveData<Integer> counterForProgressBar;
     public MainViewModel(@NonNull Application application) {
         super(application);
         compositeDisposable = new CompositeDisposable();
         database = AppDatabase.getInstance(application);
         results = database.mainDao().getAllResults();
         isDownloadingFinished = new MutableLiveData<>();
+        counterForProgressBar = new MutableLiveData<>();
 
     }
 
@@ -51,6 +53,7 @@ public class MainViewModel extends AndroidViewModel {
             public void accept(Response response) throws Exception {
                 Log.i("my_ok", "ok"+page);
                 if(response.getNext()!=null){
+                    counterForProgressBar.setValue(page);
                     if(page==1)
                         deleteAllResults();
                     insertListResults(response.getResults());
@@ -87,6 +90,9 @@ public class MainViewModel extends AndroidViewModel {
         this.results = results;
     }
 
+    public MutableLiveData<Integer> getCounterForProgressBar() {
+        return counterForProgressBar;
+    }
 
     public void insertResult(Result result){
         new InsertResultTask().execute(result);
