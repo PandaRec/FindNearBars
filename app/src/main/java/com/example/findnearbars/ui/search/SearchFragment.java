@@ -1,5 +1,6 @@
 package com.example.findnearbars.ui.search;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,9 +18,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.PrimaryKey;
 
+import com.example.findnearbars.DetailsActivity;
 import com.example.findnearbars.R;
 import com.example.findnearbars.adapters.SearchAdapter;
 import com.example.findnearbars.pojo.Result;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +65,15 @@ public class SearchFragment extends Fragment {
             @Override
             public void onChanged(List<Result> results) {
                 myResults.addAll(results);
+            }
+        });
+        adapter.setOnClickResultListener(new SearchAdapter.OnClickResultListener() {
+            @Override
+            public void onClickResult(int position) {
+                Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                intent.putExtra("result",new Gson().toJson(adapter.getResults().get(position)));
+                startActivity(intent);
+
             }
         });
 

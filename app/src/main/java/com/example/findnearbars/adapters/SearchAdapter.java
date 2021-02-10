@@ -16,6 +16,7 @@ import java.util.List;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> {
     private List<Result> results;
+    private OnClickResultListener onClickResultListener;
     public SearchAdapter(){
         results = new ArrayList<>();
     }
@@ -24,9 +25,16 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         return results;
     }
 
+    public void setOnClickResultListener(OnClickResultListener onClickResultListener) {
+        this.onClickResultListener = onClickResultListener;
+    }
+
     public void setResults(List<Result> results) {
         this.results = results;
         notifyDataSetChanged();
+    }
+    public interface OnClickResultListener{
+        void onClickResult(int position);
     }
 
     @NonNull
@@ -47,11 +55,19 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         return results.size();
     }
 
-    public static class SearchViewHolder extends RecyclerView.ViewHolder{
+    public  class SearchViewHolder extends RecyclerView.ViewHolder{
         private TextView textViewTitle;
         public SearchViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.textViewShortTitle);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(onClickResultListener!=null){
+                        onClickResultListener.onClickResult(getAdapterPosition());
+                    }
+                }
+            });
         }
     }
 }
