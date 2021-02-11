@@ -56,7 +56,7 @@ public class LoadingActivity extends AppCompatActivity {
 //                Log.i("my_res","ok");
 //            }
 //        });
-        mainViewModel.loadData(1);
+        //mainViewModel.loadData(1);
         mainViewModel.getIsDownloadingFinished().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {

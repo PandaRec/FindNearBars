@@ -6,6 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.findnearbars.adapters.DetailImagesAdapter;
@@ -29,6 +32,7 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView textViewPhone;
     private TextView textViewSite;
     private MapView mapview;
+    private ScrollView mainScrollView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +75,33 @@ public class DetailsActivity extends AppCompatActivity {
         textViewTimetable = findViewById(R.id.textViewTimetable);
         textViewPhone = findViewById(R.id.textViewPhone);
         textViewSite = findViewById(R.id.textViewSite);
+        mainScrollView =  findViewById(R.id.scrollView);
+
+        mapview.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        // Disallow ScrollView to intercept touch events.
+                        mapview.requestDisallowInterceptTouchEvent(false);
+                        // Disable touch on transparent view
+                        return true;
+
+                    case MotionEvent.ACTION_UP:
+                        // Allow ScrollView to intercept touch events.
+                        mapview.requestDisallowInterceptTouchEvent(false);
+                        return true;
+
+                    case MotionEvent.ACTION_MOVE:
+                        mainScrollView.requestDisallowInterceptTouchEvent(false);
+                        return true;
+
+                    default:
+                        return true;
+                }
+            }
+        });
 
 
 
