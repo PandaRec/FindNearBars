@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ScrollView;
@@ -31,7 +33,7 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView textViewTimetable;
     private TextView textViewPhone;
     private TextView textViewSite;
-    private MapView mapview;
+    private CustomMapView mapview;
     private ScrollView mainScrollView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,8 @@ public class DetailsActivity extends AppCompatActivity {
 
         // Укажите имя activity вместо map.
         setContentView(R.layout.activity_details);
-        mapview = (MapView)findViewById(R.id.mapview);
+        //mapview = new CustomMapView(this);
+        mapview = findViewById(R.id.mapview);
         mapview.getMap().move(
                 new CameraPosition(new Point(55.751574, 37.573856), 11.0f, 0.0f, 0.0f),
                 new Animation(Animation.Type.SMOOTH, 0),
@@ -66,9 +69,7 @@ public class DetailsActivity extends AppCompatActivity {
                 new CameraPosition(point, 15.0f, 0.0f, 0.0f),
                 new Animation(Animation.Type.SMOOTH, 0),
                 null);
-        mapview.setClickable(true);
-        mapview.setFocusable(true);
-        mapview.setDuplicateParentStateEnabled(false);
+
 
         textViewTitle = findViewById(R.id.textViewTitle);
         textViewAddress = findViewById(R.id.textViewAddress);
@@ -77,31 +78,34 @@ public class DetailsActivity extends AppCompatActivity {
         textViewSite = findViewById(R.id.textViewSite);
         mainScrollView =  findViewById(R.id.scrollView);
 
-        mapview.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                int action = event.getAction();
-                switch (action) {
-                    case MotionEvent.ACTION_DOWN:
-                        // Disallow ScrollView to intercept touch events.
-                        mapview.requestDisallowInterceptTouchEvent(false);
-                        // Disable touch on transparent view
-                        return true;
 
-                    case MotionEvent.ACTION_UP:
-                        // Allow ScrollView to intercept touch events.
-                        mapview.requestDisallowInterceptTouchEvent(false);
-                        return true;
-
-                    case MotionEvent.ACTION_MOVE:
-                        mainScrollView.requestDisallowInterceptTouchEvent(false);
-                        return true;
-
-                    default:
-                        return true;
-                }
-            }
-        });
+//        mapview.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                int action = event.getAction();
+//                switch (action) {
+//                    case MotionEvent.ACTION_DOWN:
+//                        // Disallow ScrollView to intercept touch events.
+//                        mainScrollView.requestDisallowInterceptTouchEvent(true);
+//                        // Disable touch on transparent view
+//                        //return true;
+//
+//                    case MotionEvent.ACTION_UP:
+//                        // Allow ScrollView to intercept touch events.
+//                        mainScrollView.requestDisallowInterceptTouchEvent(true);
+//                        //return true;
+//
+//                    case MotionEvent.ACTION_MOVE:
+//                        mainScrollView.requestDisallowInterceptTouchEvent(true);
+//                        //return true;
+//
+////                    default:
+////                        return true;
+//                }
+//                return true;
+//            }
+//
+//        });
 
 
 
@@ -137,4 +141,7 @@ public class DetailsActivity extends AppCompatActivity {
         mapview.onStart();
         MapKitFactory.getInstance().onStart();
     }
+
+
+
 }
