@@ -7,6 +7,7 @@ import com.example.findnearbars.pojo.Coords;
 import com.example.findnearbars.pojo.Image;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.internal.LinkedTreeMap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class ResultConverter {
         ArrayList<Image> imagesArrayList = new ArrayList<>();
         for (Object o : objects){
             Image image = new Image();
-            image.setImage(o.toString());
+            image.setImage(((LinkedTreeMap) o).get("image").toString());
             image.setSource(null);
             imagesArrayList.add(image);
         }

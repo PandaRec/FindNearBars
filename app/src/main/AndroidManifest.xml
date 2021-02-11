@@ -10,7 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FindNearBars">
+        android:theme="@style/Theme.FindNearBars"
+        android:name="androidx.multidex.MultiDexApplication">
         <activity android:name=".DetailsActivity"></activity>
         <activity android:name=".MainActivity" />
         <activity

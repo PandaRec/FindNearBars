@@ -20,6 +20,7 @@
         app:layout_constraintBottom_toTopOf="@id/textViewLabelMainInformation"
         android:background="@color/purple_200"/>
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewImages"
         android:layout_width="131dp"
@@ -41,6 +42,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/recyclerViewImages"
         android:layout_margin="8dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         />
 
 
@@ -55,11 +58,13 @@
         android:id="@+id/textViewLabelTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:text="Название:"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewTitle"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
-        android:layout_margin="8dp"
+        app:layout_constraintTop_toTopOf="@+id/textViewTitle"
+        android:textColor="@color/black"
         />
 
     <TextView
@@ -71,107 +76,122 @@
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textViewLabelMainInformation"
         android:layout_margin="8dp"
+        android:textColor="@color/black"
+
         />
 
     <TextView
         android:id="@+id/textViewLabelAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:text="Адрес:"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewAddress"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAddress"
-        android:layout_margin="8dp"
+        app:layout_constraintTop_toTopOf="@+id/textViewAddress"
+        android:textColor="@color/black"
         />
 
     <TextView
         android:id="@+id/textViewAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
-        android:layout_margin="8dp"
+        android:textColor="@color/black"
         />
 
     <TextView
         android:id="@+id/textViewLabelTimetable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:text="Время работы:"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewTimetable"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTimetable"
-        android:layout_margin="8dp"
+        app:layout_constraintTop_toTopOf="@+id/textViewTimetable"
+        android:textColor="@color/black"
         />
 
     <TextView
         android:id="@+id/textViewTimetable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textViewAddress"
-        android:layout_margin="8dp"
+        android:textColor="@color/black"
         />
 
     <TextView
         android:id="@+id/textViewLabelPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:text="Телефон:"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewPhone"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPhone"
-        android:layout_margin="8dp"
+        app:layout_constraintTop_toTopOf="@+id/textViewPhone"
+        android:textColor="@color/black"
         />
 
     <TextView
         android:id="@+id/textViewPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textViewTimetable"
-        android:layout_margin="8dp"
+        android:textColor="@color/black"
         />
 
     <TextView
         android:id="@+id/textViewLabelSite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:text="Сайт:"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewSite"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSite"
-        android:layout_margin="8dp"
+        app:layout_constraintTop_toTopOf="@+id/textViewSite"
+        android:textColor="@color/black"
         />
 
     <TextView
         android:id="@+id/textViewSite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/textViewPhone"
-        android:layout_margin="8dp"
+        android:textColor="@color/black"
         />
-
 
 
     <TextView
         android:id="@+id/textViewLabelSecondaryInformation"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:text="Дополнительная информация"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSite"
-        android:layout_margin="8dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
         />
 
     <TextView
@@ -183,6 +203,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewLabelSecondaryInformation"
         android:layout_margin="8dp"
+        android:textColor="@color/black"
+
         />
 
     <androidx.recyclerview.widget.RecyclerView
