@@ -51,6 +51,7 @@ public class DetailsActivity extends AppCompatActivity {
         recyclerViewImages.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         adapter.setResults(currentResult.getImages());
         setInformationToElements();
+
     }
 
     private void setInformationToElements() {
