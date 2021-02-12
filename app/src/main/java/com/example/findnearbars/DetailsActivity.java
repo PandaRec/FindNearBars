@@ -2,6 +2,7 @@ package com.example.findnearbars;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
@@ -79,34 +80,6 @@ public class DetailsActivity extends AppCompatActivity {
         mainScrollView =  findViewById(R.id.scrollView);
 
 
-//        mapview.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                int action = event.getAction();
-//                switch (action) {
-//                    case MotionEvent.ACTION_DOWN:
-//                        // Disallow ScrollView to intercept touch events.
-//                        mainScrollView.requestDisallowInterceptTouchEvent(true);
-//                        // Disable touch on transparent view
-//                        //return true;
-//
-//                    case MotionEvent.ACTION_UP:
-//                        // Allow ScrollView to intercept touch events.
-//                        mainScrollView.requestDisallowInterceptTouchEvent(true);
-//                        //return true;
-//
-//                    case MotionEvent.ACTION_MOVE:
-//                        mainScrollView.requestDisallowInterceptTouchEvent(true);
-//                        //return true;
-//
-////                    default:
-////                        return true;
-//                }
-//                return true;
-//            }
-//
-//        });
-
 
 
         recyclerViewImages = findViewById(R.id.recyclerViewImages);
@@ -117,6 +90,17 @@ public class DetailsActivity extends AppCompatActivity {
         setInformationToElements();
 
 
+        recyclerViewImages.setBackgroundColor(getResources().getColor(R.color.black));
+
+
+
+        recyclerViewImages.setAdapter(adapter);
+
+// add pager behavior
+        PagerSnapHelper snapHelper = new PagerSnapHelper();
+        snapHelper.attachToRecyclerView(recyclerViewImages);
+
+        recyclerViewImages.addItemDecoration(new LinePagerIndicatorDecoration());
 
 
     }
