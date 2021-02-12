@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
@@ -65,7 +66,10 @@ public class LinePagerIndicatorDecoration extends RecyclerView.ItemDecoration {
         float indicatorStartX = (parent.getWidth() - indicatorTotalWidth) / 2F;
 
         // center vertically in the allotted space
-        float indicatorPosY = parent.getHeight() - mIndicatorHeight / 2F;
+        float indicatorPosY = parent.getHeight() - 40;//mIndicatorHeight/2F;/*/2F;*/
+        Log.i("my_num_1",Integer.toString(parent.getHeight()));
+        Log.i("my_num_2",Integer.toString(mIndicatorHeight));
+
 
         drawInactiveIndicators(c, indicatorStartX, indicatorPosY, itemCount);
 
