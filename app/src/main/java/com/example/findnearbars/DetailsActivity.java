@@ -43,7 +43,7 @@ public class DetailsActivity extends AppCompatActivity {
         MapKitFactory.initialize(this);
 
         // Укажите имя activity вместо map.
-        setContentView(R.layout.activity_details);
+        setContentView(R.layout.activity_details_2);
         //mapview = new CustomMapView(this);
         mapview = findViewById(R.id.mapview);
         mapview.getMap().move(
@@ -90,7 +90,7 @@ public class DetailsActivity extends AppCompatActivity {
         setInformationToElements();
 
 
-        recyclerViewImages.setBackgroundColor(getResources().getColor(R.color.black));
+        recyclerViewImages.setBackgroundColor(getResources().getColor(R.color.gray));
 
 
 

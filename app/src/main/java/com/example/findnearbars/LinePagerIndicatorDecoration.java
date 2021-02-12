@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class LinePagerIndicatorDecoration extends RecyclerView.ItemDecoration {
 
-    private int colorActive = 0xFFFFFFFF;
-    private int colorInactive = 0x66FFFFFF;
+    private int colorActive = 0xFF1D0909;// 0xFFFFFFFF
+    private int colorInactive = 0xFFC2C2C2;//0x66FFFFFF
 
     private static final float DP = Resources.getSystem().getDisplayMetrics().density;
 
