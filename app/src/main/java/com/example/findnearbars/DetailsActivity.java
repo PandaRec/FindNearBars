@@ -23,6 +23,10 @@ import com.yandex.mapkit.geometry.Point;
 import com.yandex.mapkit.map.CameraPosition;
 import com.yandex.mapkit.mapview.MapView;
 
+//todo : при нажатии на textViewPhone открыать тлф
+//todo : изменить вывод url сайта на какую то кнопку
+//todo: при нажатии на url открыть браузер
+//todo : при нажатии на адрес открывать навигатор
 
 public class DetailsActivity extends AppCompatActivity {
     private Result currentResult;
@@ -36,9 +40,11 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView textViewSite;
     private CustomMapView mapview;
     private ScrollView mainScrollView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         MapKitFactory.setApiKey("fefdbc18-9be6-468b-8dbc-6fb788c4f4a1");
         MapKitFactory.initialize(this);
 
@@ -124,6 +130,7 @@ public class DetailsActivity extends AppCompatActivity {
         super.onStart();
         mapview.onStart();
         MapKitFactory.getInstance().onStart();
+
     }
 
 
