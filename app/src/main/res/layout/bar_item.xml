@@ -22,22 +22,59 @@
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"/>
 
+    <ImageView
+        android:id="@+id/imageViewTitle"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="209dp"
+        tools:layout_editor_absoluteY="54dp"
+        android:src="@drawable/ic_title_2"
+        app:layout_constraintTop_toTopOf="@id/imageViewShort"
+        app:layout_constraintStart_toEndOf="@id/imageViewShort"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+
+        />
+
+    <ImageView
+        android:id="@+id/imageViewAddress"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        tools:layout_editor_absoluteX="217dp"
+        tools:layout_editor_absoluteY="117dp"
+        android:src="@drawable/ic_address_2"
+        app:layout_constraintTop_toBottomOf="@id/imageViewTitle"
+        app:layout_constraintStart_toEndOf="@id/imageViewShort"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="14dp"
+        />
+
     <TextView
         android:id="@+id/textViewShortTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/imageViewShort"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="@id/imageViewTitle"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewTitle"
+        app:layout_constraintStart_toEndOf="@id/imageViewTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="8dp"
+        />
 
     <TextView
         android:id="@+id/textViewShortAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintTop_toBottomOf="@id/textViewShortTitle"
-        app:layout_constraintStart_toEndOf="@id/imageViewShort"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="@id/imageViewAddress"
+        app:layout_constraintBottom_toBottomOf="@id/imageViewAddress"
+        app:layout_constraintStart_toEndOf="@id/imageViewAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="8dp"
+        />
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
