@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+// todo : фотка по умолчанию обрезается - надо исправить
 
 public class SearchFragment extends Fragment {
     private SearchViewModel searchViewModel;

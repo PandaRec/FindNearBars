@@ -3,4 +3,12 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string-array name="distance_items">
+        <item>10м</item>
+        <item>50м</item>
+        <item>100м</item>
+        <item>500м</item>
+        <item>1км</item>
+        <item>1.5км</item>
+    </string-array>
 </resources>
