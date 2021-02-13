@@ -51,7 +51,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         Result result = results.get(position);
         holder.textViewTitle.setText(result.getTitle());
         holder.textViewAddress.setText(result.getAddress());
-        Picasso.get().load(result.getImages().get(0).getImage()).error(R.drawable.ic_no_image).into(holder.imageView);
+        Picasso.get().load(result.getImages().get(0).getImage()).error(R.drawable.ic_no_image_3).into(holder.imageView);
     }
 
     @Override
