@@ -48,6 +48,7 @@ public class DetailsActivity extends AppCompatActivity {
         MapKitFactory.setApiKey("fefdbc18-9be6-468b-8dbc-6fb788c4f4a1");
         MapKitFactory.initialize(this);
 
+
         // Укажите имя activity вместо map.
         setContentView(R.layout.activity_details_2);
         //mapview = new CustomMapView(this);

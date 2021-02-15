@@ -27,6 +27,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 // todo : фотка по умолчанию обрезается - надо исправить
+// todo : слушатели в onResume и отписываться в onPause
 
 public class SearchFragment extends Fragment {
     private SearchViewModel searchViewModel;

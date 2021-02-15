@@ -16,7 +16,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import java.util.ArrayList;
-
+// todo : запрет на переход на страницу Loading
 public class MainActivity extends AppCompatActivity {
     private MainViewModel mainViewModel;
 

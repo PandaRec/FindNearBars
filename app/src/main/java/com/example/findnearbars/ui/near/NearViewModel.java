@@ -14,7 +14,10 @@ import com.example.findnearbars.pojo.Result;
 import com.google.android.material.resources.MaterialAttributes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class NearViewModel extends ViewModel {
     private AppDatabase database;
@@ -29,9 +32,12 @@ public class NearViewModel extends ViewModel {
         return results;
     }
 
-    public List<Result> getResultsByDistance(Coords currentLocation, Coords finalLocation, int distance, List<Result> inputResults){
+
+
+    public Map<Double,Result>/*List<Result>*/ getResultsByDistance(Coords currentLocation, double distance, List<Result> inputResults){
         int r = 6371000;
         ArrayList<Result> outputResults = new ArrayList<>();
+        Map<Double,Result> unsortedMap= new HashMap<Double,Result>();
 
         //1 градс = pi/180
         // E - долгота
@@ -52,14 +58,20 @@ public class NearViewModel extends ViewModel {
 
             double resultDistance = 2*r*Math.asin(Math.sqrt(val1+val2*val3));
 
-            if(resultDistance<distance)
+            if(resultDistance<distance) {
+                unsortedMap.put(resultDistance,result);
                 outputResults.add(result);
+            }
         }
+        Map <Double,Result> sortedMap = new TreeMap<>(unsortedMap);
+        return sortedMap;
 
 
 
 
-        return outputResults;
+        //return outputResults;
     }
+
+
 
 }
