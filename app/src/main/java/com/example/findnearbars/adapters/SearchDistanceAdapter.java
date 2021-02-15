@@ -15,6 +15,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class SearchDistanceAdapter extends RecyclerView.Adapter<SearchDistanceAdapter.SearchDistanceViewHolder> {
     private List<Result> results;
@@ -42,15 +43,36 @@ public class SearchDistanceAdapter extends RecyclerView.Adapter<SearchDistanceAd
     @NonNull
     @Override
     public SearchDistanceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bar_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.bar_item_near,parent,false);
         return new SearchDistanceViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull SearchDistanceViewHolder holder, int position) {
         Result result = results.get(position);
-        holder.textViewTitle.setText(result.getTitle());
-        holder.textViewAddress.setText(result.getAddress());
+        String title = result.getTitle();
+        String address = result.getAddress();
+        String distance = String.format(Locale.getDefault(),"%.2f м",result.getDistance());
+        if(title!=null){
+            holder.textViewTitle.setText(title);
+        }else {
+            holder.textViewTitle.setText("");
+        }
+
+        if(address!=null){
+            holder.textViewAddress.setText(address);
+        }else {
+            holder.textViewAddress.setText("");
+        }
+        if(distance!=null){
+            holder.textViewDistance.setText(distance);
+        }else {
+            holder.textViewDistance.setText("");
+        }
+
+//        holder.textViewTitle.setText(result.getTitle());
+//        holder.textViewAddress.setText(result.getAddress());
+//        holder.textViewDistance.setText(String.format("%s",result.getDistance()));
         Picasso.get().load(result.getImages().get(0).getImage()).error(R.drawable.ic_no_image_3).into(holder.imageView);
     }
 
@@ -66,10 +88,10 @@ public class SearchDistanceAdapter extends RecyclerView.Adapter<SearchDistanceAd
         private ImageView imageView;
         public SearchDistanceViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewTitle = itemView.findViewById(R.id.textViewShortTitle);
-            textViewAddress = itemView.findViewById(R.id.textViewShortAddress);
-            textViewAddress = itemView.findViewById(R.id.textViewShortDistance);
-            imageView = itemView.findViewById(R.id.imageViewShort);
+            textViewTitle = itemView.findViewById(R.id.textViewShortTitleNear);
+            textViewAddress = itemView.findViewById(R.id.textViewShortAddressNear);
+            textViewDistance = itemView.findViewById(R.id.textViewShortDistanceNear);
+            imageView = itemView.findViewById(R.id.imageViewShortNear);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

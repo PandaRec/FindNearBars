@@ -51,6 +51,8 @@ public class Result {
     @Expose
     private List<Image> images = null;
 
+    private double distance;
+
     public String getTitle() {
         return title;
     }
@@ -153,5 +155,13 @@ public class Result {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
 }

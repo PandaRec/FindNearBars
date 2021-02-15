@@ -10,7 +10,7 @@ import androidx.room.RoomDatabase;
 import com.example.findnearbars.pojo.Response;
 import com.example.findnearbars.pojo.Result;
 
-@Database(entities = {Result.class},version = 2,exportSchema = false)
+@Database(entities = {Result.class},version = 3,exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase database;
     private static final Object LOCK = new Object();

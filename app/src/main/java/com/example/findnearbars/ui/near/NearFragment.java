@@ -1,6 +1,7 @@
 package com.example.findnearbars.ui.near;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,6 +34,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.findnearbars.DetailsActivity;
 import com.example.findnearbars.R;
 import com.example.findnearbars.adapters.SearchAdapter;
+import com.example.findnearbars.adapters.SearchDistanceAdapter;
 import com.example.findnearbars.pojo.Coords;
 import com.example.findnearbars.pojo.Result;
 import com.google.android.material.snackbar.Snackbar;
@@ -52,7 +55,7 @@ public class NearFragment extends Fragment {
     private NearViewModel nearViewModel;
     private LocationManager locationManager;
     private LocationListener locationListener;
-    private SearchAdapter adapter;
+    private SearchDistanceAdapter adapter;
 
     private Coords currentCoords = null;
     private List<Result> myResults;
@@ -86,7 +89,7 @@ public class NearFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         myResults = new ArrayList<>();
         resultsByDistance =  new ArrayList<>();
-        adapter = new SearchAdapter();
+        adapter = new SearchDistanceAdapter();
         nearViewModel = new ViewModelProvider(this).get(NearViewModel.class);
         nearViewModel.createNearViewModel(getContext());
         locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
@@ -207,7 +210,7 @@ public class NearFragment extends Fragment {
             Log.i("mt_rez","work here");
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
         }
-        adapter.setOnClickResultListener(new SearchAdapter.OnClickResultListener() {
+        adapter.setOnClickResultListener(new SearchDistanceAdapter.OnClickResultListener() {
             @Override
             public void onClickResult(int position) {
                 Intent intent = new Intent(getActivity(), DetailsActivity.class);
@@ -247,17 +250,20 @@ public class NearFragment extends Fragment {
         Map<Double,Result> result =new TreeMap<Double, Result>();
         result = nearViewModel.getResultsByDistance(currentCoords,distance,myResults);
         //resultsByDistance.addAll(nearViewModel.getResultsByDistance(currentCoords,distance,myResults));
-        if(resultsByDistance.size()==0){
+        if(result.size()==0){
             Snackbar.make(getView(), "Ничего не нашли \uD83D\uDE13", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
             return;
         }
         for(Double dist: result.keySet()){
             Result res = result.get(dist);
-
+            res.setDistance(dist);
+            resultsByDistance.add(res);
         }
         adapter.setResults(resultsByDistance);
         editTextDistance.setText("");
-
+        //editTextDistance.clearFocus();
+        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
     }
 }
