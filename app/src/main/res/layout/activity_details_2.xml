@@ -74,7 +74,7 @@
         app:layout_constraintTop_toBottomOf="@id/textViewLabelAddress"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="8dp"
-        app:cardCornerRadius="24dp"
+        app:cardCornerRadius="20dp"
 
 
         >
@@ -110,6 +110,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        app:cardCornerRadius="20dp"
+
 
         >
 
@@ -143,6 +145,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        app:cardCornerRadius="20dp"
+
 
         >
 
@@ -175,6 +179,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        app:cardCornerRadius="20dp"
+
 
         >
 
@@ -207,6 +213,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        app:cardCornerRadius="20dp"
+
 
         >
 
@@ -219,6 +227,17 @@
             android:textColor="@color/black"
             />
     </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imageViewfavourite"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_add_to_favourite"
+        app:layout_constraintTop_toBottomOf="@id/recyclerViewImages"
+        app:layout_constraintBottom_toBottomOf="@id/recyclerViewImages"
+        app:layout_constraintEnd_toEndOf="@id/recyclerViewImages"
+
+        />
 
 
 

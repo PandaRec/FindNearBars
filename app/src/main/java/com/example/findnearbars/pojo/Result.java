@@ -1,6 +1,7 @@
 package com.example.findnearbars.pojo;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
@@ -162,6 +163,23 @@ public class Result {
     }
 
     public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    public Result(int id, String title, String address, String timetable, String phone, String bodyText, String description, String siteUrl, String foreignUrl, Coords coords, String subway, int favoritesCount, List<Image> images, double distance) {
+        this.id = id;
+        this.title = title;
+        this.address = address;
+        this.timetable = timetable;
+        this.phone = phone;
+        this.bodyText = bodyText;
+        this.description = description;
+        this.siteUrl = siteUrl;
+        this.foreignUrl = foreignUrl;
+        this.coords = coords;
+        this.subway = subway;
+        this.favoritesCount = favoritesCount;
+        this.images = images;
         this.distance = distance;
     }
 }

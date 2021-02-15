@@ -23,13 +23,7 @@ public class FavouriteFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         favouriteViewModel = new ViewModelProvider(this).get(FavouriteViewModel.class);
         View root = inflater.inflate(R.layout.fragment_favourite,container,false);
-        TextView textViewFavourite = root.findViewById(R.id.textViewFavourite);
-        favouriteViewModel.getmText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                textViewFavourite.setText(s);
-            }
-        });
+
         return root;
     }
 }

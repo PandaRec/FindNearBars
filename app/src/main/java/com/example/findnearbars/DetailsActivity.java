@@ -1,6 +1,7 @@
 package com.example.findnearbars;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,11 +12,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.findnearbars.adapters.DetailImagesAdapter;
+import com.example.findnearbars.pojo.FavouriteResult;
 import com.example.findnearbars.pojo.Result;
+import com.example.findnearbars.ui.favourite.FavouriteViewModel;
+import com.example.findnearbars.ui.search.SearchViewModel;
 import com.google.gson.Gson;
 import com.yandex.mapkit.Animation;
 import com.yandex.mapkit.MapKitFactory;
@@ -32,6 +38,8 @@ public class DetailsActivity extends AppCompatActivity {
     private Result currentResult;
     private RecyclerView recyclerViewImages;
     private DetailImagesAdapter adapter;
+    private FavouriteViewModel favouriteViewModel;
+    private FavouriteResult favouriteResult;
 
     private TextView textViewTitle;
     private TextView textViewAddress;
@@ -40,6 +48,7 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView textViewSite;
     private CustomMapView mapview;
     private ScrollView mainScrollView;
+    private ImageView imageViewFavourite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +94,26 @@ public class DetailsActivity extends AppCompatActivity {
         textViewPhone = findViewById(R.id.textViewPhone);
         textViewSite = findViewById(R.id.textViewSite);
         mainScrollView =  findViewById(R.id.scrollView);
+        imageViewFavourite = findViewById(R.id.imageViewfavourite);
 
+        favouriteViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(FavouriteViewModel.class);
+        favouriteViewModel.createFavouriteViewModel(this);
+        setFavourite();
+
+        imageViewFavourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(favouriteResult==null){
+                    favouriteViewModel.insertFavouriteResult(new FavouriteResult(currentResult));
+                    Toast.makeText(DetailsActivity.this, "added", Toast.LENGTH_SHORT).show();
+
+                }else {
+                    favouriteViewModel.deleteFavouriteResult(new FavouriteResult(currentResult));
+                    Toast.makeText(DetailsActivity.this, "removed", Toast.LENGTH_SHORT).show();
+                }
+                setFavourite();
+            }
+        });
 
 
 
@@ -133,7 +161,16 @@ public class DetailsActivity extends AppCompatActivity {
         MapKitFactory.getInstance().onStart();
 
     }
+    private void setFavourite(){
+        favouriteResult = favouriteViewModel.getFavouriteResultById(currentResult.getId());
+        if(favouriteResult==null){
+            imageViewFavourite.setImageResource(R.drawable.ic_add_to_favourite);
 
+        }else {
+            imageViewFavourite.setImageResource(R.drawable.ic_remove_from_favourite);
 
+        }
+
+    }
 
 }

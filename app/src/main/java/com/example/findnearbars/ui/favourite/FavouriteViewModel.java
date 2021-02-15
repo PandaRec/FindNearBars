@@ -1,17 +1,91 @@
 package com.example.findnearbars.ui.favourite;
 
+import android.content.Context;
+import android.os.AsyncTask;
+
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.loader.content.AsyncTaskLoader;
+
+import com.example.findnearbars.data.AppDatabase;
+import com.example.findnearbars.pojo.FavouriteResult;
+import com.example.findnearbars.pojo.Result;
+
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class FavouriteViewModel extends ViewModel {
+    private AppDatabase database;
+    private LiveData<List<Result>> favouriteResults;
 
-    private MutableLiveData<String> mText;
-    public FavouriteViewModel(){
-        mText = new MutableLiveData<>();
-        mText.setValue("Favourite Fragment");
+    public void createFavouriteViewModel(Context context){
+        database = AppDatabase.getInstance(context);
+        favouriteResults = database.mainDao().getAllFavouriteResults();
     }
 
-    public MutableLiveData<String> getmText() {
-        return mText;
+    public LiveData<List<Result>> getFavouriteResults() {
+        return favouriteResults;
+    }
+
+
+
+    public void insertFavouriteResult(Result result){
+        new InsertFavouriteResultTask().execute(result);
+    }
+
+    public FavouriteResult getFavouriteResultById(int favouriteMovieId){
+        try {
+            return new GetFavouriteResultByIdTask().execute(favouriteMovieId).get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public  void deleteAllFavouriteResults(){
+        new DeleteAllFavouriteResultsTask().execute();
+    }
+
+    public void deleteFavouriteResult(FavouriteResult favouriteResult){
+        new DeleteFavouriteResultTask().execute(favouriteResult);
+    }
+
+
+    private class InsertFavouriteResultTask extends AsyncTask<Result,Void,Void>{
+        @Override
+        protected Void doInBackground(Result... results) {
+            if (results!=null && results.length>0)
+                database.mainDao().insertFavouriteResult(results[0]);
+            return null;
+        }
+    }
+
+    private class GetFavouriteResultByIdTask extends AsyncTask<Integer,Void,FavouriteResult>{
+        @Override
+        protected FavouriteResult doInBackground(Integer... integers) {
+            if(integers!=null && integers.length>0){
+                return database.mainDao().getFavouriteResultById(integers[0]);
+            }
+            return null;
+        }
+    }
+
+    private class DeleteAllFavouriteResultsTask extends AsyncTask<Void,Void,Void>{
+        @Override
+        protected Void doInBackground(Void... voids) {
+            database.mainDao().deleteAllFavouriteResults();
+            return null;
+        }
+    }
+
+    private class DeleteFavouriteResultTask extends AsyncTask<FavouriteResult,Void,Void>{
+        @Override
+        protected Void doInBackground(FavouriteResult... favouriteResults) {
+            if(favouriteResults!=null && favouriteResults.length>0)
+                database.mainDao().deleteFavouriteResult(favouriteResults[0]);
+
+            return null;
+        }
     }
 }

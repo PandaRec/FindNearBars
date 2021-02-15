@@ -47,7 +47,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
+// todo : добавить карту с меткой пользователя и скзать, что он тут
 import static android.content.Context.LOCATION_SERVICE;
 
 public class NearFragment extends Fragment {
