@@ -53,6 +53,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Search
         FavouriteResult result = favouriteResults.get(position);
         holder.textViewTitle.setText(result.getTitle());
         holder.textViewAddress.setText(result.getAddress());
+        holder.textViewCount.setText(String.format("%s",result.getFavoritesCount()));
         Picasso.get().load(result.getImages().get(0).getImage()).error(R.drawable.ic_no_image_3).into(holder.imageView);
     }
 
@@ -64,12 +65,14 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Search
     public  class SearchViewHolder extends RecyclerView.ViewHolder{
         private TextView textViewTitle;
         private TextView textViewAddress;
+        private TextView textViewCount;
         private ImageView imageView;
         public SearchViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.textViewTitleFavourite);
             textViewAddress = itemView.findViewById(R.id.textViewAddressFavourite);
             imageView = itemView.findViewById(R.id.imageViewFavorite);
+            textViewCount = itemView.findViewById(R.id.textViewCountOfFavorite);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

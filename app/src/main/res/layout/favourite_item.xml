@@ -50,6 +50,19 @@
             android:layout_marginTop="14dp"
             />
 
+        <ImageView
+            android:id="@+id/imageViewCountOfFavorite"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            tools:layout_editor_absoluteX="217dp"
+            tools:layout_editor_absoluteY="117dp"
+            android:src="@drawable/ic_count_of_favorite"
+            app:layout_constraintTop_toBottomOf="@id/imageViewAddressFavorite"
+            app:layout_constraintStart_toEndOf="@id/imageViewFavorite"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="14dp"
+            />
+
         <TextView
             android:id="@+id/textViewTitleFavourite"
             android:layout_width="0dp"
@@ -70,6 +83,18 @@
             app:layout_constraintTop_toTopOf="@id/imageViewAddressFavorite"
             app:layout_constraintBottom_toBottomOf="@id/imageViewAddressFavorite"
             app:layout_constraintStart_toEndOf="@id/imageViewAddressFavorite"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="8dp"
+            />
+
+        <TextView
+            android:id="@+id/textViewCountOfFavorite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintTop_toTopOf="@id/imageViewCountOfFavorite"
+            app:layout_constraintBottom_toBottomOf="@id/imageViewCountOfFavorite"
+            app:layout_constraintStart_toEndOf="@id/imageViewCountOfFavorite"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="8dp"
             />
