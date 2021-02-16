@@ -2,6 +2,7 @@ package com.example.findnearbars.ui.favourite;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -16,27 +17,27 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class FavouriteViewModel extends ViewModel {
-    private AppDatabase database;
-    private LiveData<List<Result>> favouriteResults;
+    private static AppDatabase database;
+    private LiveData<List<FavouriteResult>> favouriteResults;
 
     public void createFavouriteViewModel(Context context){
         database = AppDatabase.getInstance(context);
         favouriteResults = database.mainDao().getAllFavouriteResults();
     }
 
-    public LiveData<List<Result>> getFavouriteResults() {
+    public LiveData<List<FavouriteResult>> getFavouriteResults() {
         return favouriteResults;
     }
 
 
 
-    public void insertFavouriteResult(Result result){
+    public void insertFavouriteResult(FavouriteResult result){
         new InsertFavouriteResultTask().execute(result);
     }
 
-    public FavouriteResult getFavouriteResultById(int favouriteMovieId){
+    public FavouriteResult getFavouriteResultById(int favouriteResultId){
         try {
-            return new GetFavouriteResultByIdTask().execute(favouriteMovieId).get();
+            return new GetFavouriteResultByIdTask().execute(favouriteResultId).get();
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
         }
@@ -52,16 +53,17 @@ public class FavouriteViewModel extends ViewModel {
     }
 
 
-    private class InsertFavouriteResultTask extends AsyncTask<Result,Void,Void>{
+    private static class InsertFavouriteResultTask extends AsyncTask<FavouriteResult,Void,Void>{
         @Override
-        protected Void doInBackground(Result... results) {
-            if (results!=null && results.length>0)
+        protected Void doInBackground(FavouriteResult... results) {
+            if (results!=null && results.length>0){
                 database.mainDao().insertFavouriteResult(results[0]);
+            }
             return null;
         }
     }
 
-    private class GetFavouriteResultByIdTask extends AsyncTask<Integer,Void,FavouriteResult>{
+    private static class GetFavouriteResultByIdTask extends AsyncTask<Integer,Void,FavouriteResult>{
         @Override
         protected FavouriteResult doInBackground(Integer... integers) {
             if(integers!=null && integers.length>0){
@@ -71,7 +73,7 @@ public class FavouriteViewModel extends ViewModel {
         }
     }
 
-    private class DeleteAllFavouriteResultsTask extends AsyncTask<Void,Void,Void>{
+    private static class DeleteAllFavouriteResultsTask extends AsyncTask<Void,Void,Void>{
         @Override
         protected Void doInBackground(Void... voids) {
             database.mainDao().deleteAllFavouriteResults();
@@ -79,7 +81,7 @@ public class FavouriteViewModel extends ViewModel {
         }
     }
 
-    private class DeleteFavouriteResultTask extends AsyncTask<FavouriteResult,Void,Void>{
+    private static class DeleteFavouriteResultTask extends AsyncTask<FavouriteResult,Void,Void>{
         @Override
         protected Void doInBackground(FavouriteResult... favouriteResults) {
             if(favouriteResults!=null && favouriteResults.length>0)

@@ -1,6 +1,7 @@
 package com.example.findnearbars;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
@@ -29,10 +30,14 @@ import com.yandex.mapkit.geometry.Point;
 import com.yandex.mapkit.map.CameraPosition;
 import com.yandex.mapkit.mapview.MapView;
 
+import java.util.List;
+
 //todo : при нажатии на textViewPhone открыать тлф
 //todo : изменить вывод url сайта на какую то кнопку
 //todo: при нажатии на url открыть браузер
 //todo : при нажатии на адрес открывать навигатор
+// todo : при добавлении в избарнное изменить надпись
+// todo: при удалении из избарнного изменить надпись
 
 public class DetailsActivity extends AppCompatActivity {
     private Result currentResult;
@@ -136,7 +141,14 @@ public class DetailsActivity extends AppCompatActivity {
         snapHelper.attachToRecyclerView(recyclerViewImages);
 
         recyclerViewImages.addItemDecoration(new LinePagerIndicatorDecoration());
-
+        favouriteViewModel.getFavouriteResults().observe(this, new Observer<List<FavouriteResult>>() {
+            @Override
+            public void onChanged(List<FavouriteResult> favouriteResults) {
+                for(FavouriteResult result : favouriteResults){
+                    Log.i("my_rez_favorite",result.getTitle());
+                }
+            }
+        });
 
     }
 

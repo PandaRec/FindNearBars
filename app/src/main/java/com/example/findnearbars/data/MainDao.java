@@ -29,13 +29,13 @@ public interface MainDao {
     /*-------------------------------------------------*/
 
     @Query("select * from favourite")
-    LiveData<List<Result>> getAllFavouriteResults();
+    LiveData<List<FavouriteResult>> getAllFavouriteResults();
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertFavouriteResult(Result result);
+    @Insert
+    void insertFavouriteResult(FavouriteResult result);
 
-    @Query("SELECT * FROM favourite where id==:favouriteMovieId")
-    FavouriteResult getFavouriteResultById(int favouriteMovieId);
+    @Query("SELECT * FROM favourite where id==:favoriteResultId")
+    FavouriteResult getFavouriteResultById(int favoriteResultId);
 
     @Query("delete from favourite")
     void deleteAllFavouriteResults();
