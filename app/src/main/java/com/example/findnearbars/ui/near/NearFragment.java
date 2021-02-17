@@ -31,6 +31,7 @@ import androidx.loader.app.LoaderManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.findnearbars.CustomMapView;
 import com.example.findnearbars.DetailsActivity;
 import com.example.findnearbars.R;
 import com.example.findnearbars.adapters.SearchAdapter;
@@ -39,6 +40,10 @@ import com.example.findnearbars.pojo.Coords;
 import com.example.findnearbars.pojo.Result;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
+import com.yandex.mapkit.Animation;
+import com.yandex.mapkit.MapKitFactory;
+import com.yandex.mapkit.geometry.Point;
+import com.yandex.mapkit.map.CameraPosition;
 
 import android.location.Location;
 import android.location.LocationListener;
@@ -63,11 +68,23 @@ public class NearFragment extends Fragment {
     private List<Result> myResults;
     private List<Result> resultsByDistance;
 
-    private ImageView imageViewFind;
-    private EditText editTextDistance;
-    private RecyclerView recyclerViewNear;
+//    private ImageView imageViewFind;
+//    private EditText editTextDistance;
+//    private RecyclerView recyclerViewNear;
+
+    private CustomMapView mapview;
+
 
     private static final int REQUEST_CODE_ASK_PERMISSIONS = 123;
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
+        MapKitFactory.setApiKey("fefdbc18-9be6-468b-8dbc-6fb788c4f4a1");
+        MapKitFactory.initialize(getContext());
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -97,6 +114,14 @@ public class NearFragment extends Fragment {
         locationManager = (LocationManager) getActivity().getSystemService(LOCATION_SERVICE);
 
         View root = inflater.inflate(R.layout.fragment_near, container, false);
+
+
+        mapview = root.findViewById(R.id.mapviewNear);
+        mapview.getMap().move(
+                new CameraPosition(new Point(55.751574, 37.573856), 11.0f, 0.0f, 0.0f),
+                new Animation(Animation.Type.SMOOTH, 0),
+                null);
+
         //TextView textViewNear = root.findViewById(R.id.textViewNear);
 //        nearViewModel.getmText().observe(getViewLifecycleOwner(), new Observer<String>() {
 //            @Override
@@ -105,11 +130,11 @@ public class NearFragment extends Fragment {
 //            }
 //        });
 
-        imageViewFind = root.findViewById(R.id.imageViewFind);
-        editTextDistance = root.findViewById(R.id.editTextDistance);
-        recyclerViewNear = root.findViewById(R.id.recyclerViewNear);
-        recyclerViewNear.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
-        recyclerViewNear.setAdapter(adapter);
+//        imageViewFind = root.findViewById(R.id.imageViewFind);
+//        editTextDistance = root.findViewById(R.id.editTextDistance);
+//        recyclerViewNear = root.findViewById(R.id.recyclerViewNear);
+//        recyclerViewNear.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
+//        recyclerViewNear.setAdapter(adapter);
 
         nearViewModel.getResults().observe(getViewLifecycleOwner(), new Observer<List<Result>>() {
             @Override
@@ -178,25 +203,25 @@ public class NearFragment extends Fragment {
 
     @Override
     public void onResume() {
-        editTextDistance.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    Log.i("my_rez", "find pressed");
-                    setDataToAdapter();
-                    return true;
-                }
-                return false;
-            }
-        });
-        imageViewFind.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.i("my_rez", "image find pressed");
-                setDataToAdapter();
-
-            }
-        });
+//        editTextDistance.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+//                    Log.i("my_rez", "find pressed");
+//                    setDataToAdapter();
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
+//        imageViewFind.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Log.i("my_rez", "image find pressed");
+//                setDataToAdapter();
+//
+//            }
+//        });
 
         if (canGetLocation(getContext())) {
             if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -248,24 +273,40 @@ public class NearFragment extends Fragment {
     }
 
     private void setDataToAdapter(){
-        double distance = Double.parseDouble(editTextDistance.getText().toString());
-        Map<Double,Result> result =new TreeMap<Double, Result>();
-        result = nearViewModel.getResultsByDistance(currentCoords,distance,myResults);
-        //resultsByDistance.addAll(nearViewModel.getResultsByDistance(currentCoords,distance,myResults));
-        if(result.size()==0){
-            Snackbar.make(getView(), "Ничего не нашли \uD83D\uDE13", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-            return;
-        }
-        for(Double dist: result.keySet()){
-            Result res = result.get(dist);
-            res.setDistance(dist);
-            resultsByDistance.add(res);
-        }
-        adapter.setResults(resultsByDistance);
-        editTextDistance.setText("");
-        //editTextDistance.clearFocus();
-        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+//
+//        double distance = Double.parseDouble(editTextDistance.getText().toString());
+//        Map<Double,Result> result =new TreeMap<Double, Result>();
+//        result = nearViewModel.getResultsByDistance(currentCoords,distance,myResults);
+//        //resultsByDistance.addAll(nearViewModel.getResultsByDistance(currentCoords,distance,myResults));
+//        if(result.size()==0){
+//            Snackbar.make(getView(), "Ничего не нашли \uD83D\uDE13", Snackbar.LENGTH_LONG)
+//                    .setAction("Action", null).show();
+//            return;
+//        }
+//        for(Double dist: result.keySet()){
+//            Result res = result.get(dist);
+//            res.setDistance(dist);
+//            resultsByDistance.add(res);
+//        }
+//        adapter.setResults(resultsByDistance);
+//        editTextDistance.setText("");
+//        //editTextDistance.clearFocus();
+//        InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+//        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mapview.onStop();
+        MapKitFactory.getInstance().onStop();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mapview.onStart();
+        MapKitFactory.getInstance().onStart();
+
     }
 }

@@ -1,5 +1,6 @@
 package com.example.findnearbars;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -17,6 +18,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -36,6 +38,8 @@ import com.yandex.mapkit.Animation;
 import com.yandex.mapkit.MapKitFactory;
 import com.yandex.mapkit.geometry.Point;
 import com.yandex.mapkit.map.CameraPosition;
+import com.yandex.mapkit.map.InputListener;
+import com.yandex.mapkit.map.Map;
 import com.yandex.runtime.image.ImageProvider;
 
 import java.util.List;
@@ -101,6 +105,18 @@ public class DetailsActivity extends AppCompatActivity {
                 new CameraPosition(point, 15.0f, 0.0f, 0.0f),
                 new Animation(Animation.Type.SMOOTH, 0),
                 null);
+        mapview.getMap().addInputListener(new InputListener() {
+            @Override
+            public void onMapTap(@NonNull Map map, @NonNull Point point) {
+
+            }
+
+            @Override
+            public void onMapLongTap(@NonNull Map map, @NonNull Point point) {
+                Log.i("my_rez","xyz");
+
+            }
+        });
 
 
         textViewTitle = findViewById(R.id.textViewTitle);
