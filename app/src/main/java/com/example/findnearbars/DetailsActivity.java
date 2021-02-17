@@ -37,13 +37,9 @@ import com.yandex.runtime.image.ImageProvider;
 
 import java.util.List;
 
-//todo : при нажатии на textViewPhone открыать тлф
-//todo : изменить вывод url сайта на какую то кнопку
-//todo: при нажатии на url открыть браузер
 //todo : при нажатии на адрес открывать навигатор
 // todo : при добавлении в избарнное изменить надпись
 // todo : при удалении из избарнного изменить надпись
-// todo: если больше одного тлф, то надо их сплитнуть как то
 //todo : добавить эффекта нажатия на поля
 
 public class DetailsActivity extends AppCompatActivity {
@@ -329,6 +325,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     }
     private void goToMap(){
+        Toast.makeText(this, "Тут должен быть переход в карты", Toast.LENGTH_SHORT).show();
 
     }
     private void goToBrowser(){

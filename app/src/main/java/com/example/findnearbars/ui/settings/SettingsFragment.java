@@ -17,13 +17,16 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.findnearbars.R;
+import com.example.findnearbars.pojo.Image;
 import com.google.android.material.snackbar.Snackbar;
+//todo : реализовать загрузку данных
 
 public class SettingsFragment extends Fragment {
     private SettingsViewModel settingsViewModel;
     private ImageView imageViewGitHub;
     private ImageView imageViewPhone;
     private ImageView imageViewMail;
+    private ImageView imageViewRefresh;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,6 +35,14 @@ public class SettingsFragment extends Fragment {
             imageViewGitHub = root.findViewById(R.id.imageViewSettingsGitHub);
             imageViewPhone = root.findViewById(R.id.imageViewSettingsPhone);
             imageViewMail = root.findViewById(R.id.imageViewSettingsMail);
+            imageViewRefresh = root.findViewById(R.id.imageViewRefresh);
+
+            imageViewRefresh.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // обновление данных
+                }
+            });
 
             imageViewGitHub.setOnClickListener(new View.OnClickListener() {
                 @Override

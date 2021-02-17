@@ -3,6 +3,7 @@ package com.example.findnearbars.ui.search;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,6 @@ import java.util.ArrayList;
 import java.util.List;
 // todo : фотка по умолчанию обрезается - надо исправить
 // todo : слушатели в onResume и отписываться в onPause
-// todo : запретить кнопку назад, на загрузочный экран
 
 public class SearchFragment extends Fragment {
     private SearchViewModel searchViewModel;
@@ -80,8 +80,25 @@ public class SearchFragment extends Fragment {
             }
         });
 
+        //Back pressed Logic for fragment
+        root.setFocusableInTouchMode(true);
+        root.requestFocus();
+        root.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        return true;
+                    }
+                }
+                return false;
+
+            }
+        });
 
 
         return root;
     }
+
+
 }
