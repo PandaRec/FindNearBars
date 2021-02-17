@@ -14,7 +14,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FindNearBars">
-        <activity android:name=".ui.near.NearSearchActivity"></activity>
         <activity android:name=".DetailsActivity" />
         <activity android:name=".MainActivity" />
         <activity
