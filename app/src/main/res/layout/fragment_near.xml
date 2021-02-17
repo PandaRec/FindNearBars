@@ -68,6 +68,90 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewNearIAmHere"/>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewNear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/mapviewNear"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="8dp"
+        app:cardCornerRadius="20dp"
+
+
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textViewNearSearch"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/imageViewNear"
+                android:text="Насйти заведения"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:background="?android:attr/selectableItemBackground"
+
+                />
+            <ImageView
+                android:id="@+id/imageViewNear"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_more_gray"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewNear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"/>
+
+    <EditText
+        android:id="@+id/editTextDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="13"
+        android:maxLength="5"
+        android:inputType="numberDecimal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:hint="Введите расстояние в метрах"
+        android:layout_margin="8dp"
+        android:imeOptions="actionSearch"
+        android:visibility="gone"
+        />
+
+    <ImageView
+        android:id="@+id/imageViewFind"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/ic_search_black"
+        app:layout_constraintTop_toTopOf="@id/editTextDistance"
+        app:layout_constraintBottom_toBottomOf="@id/editTextDistance"
+        app:layout_constraintStart_toEndOf="@id/editTextDistance"
+        android:layout_margin="8dp"
+        android:visibility="gone"
+        />
+
+
+
 
 
 
