@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 // todo : фотка по умолчанию обрезается - надо исправить
 // todo : слушатели в onResume и отписываться в onPause
+// todo : запретить кнопку назад, на загрузочный экран
 
 public class SearchFragment extends Fragment {
     private SearchViewModel searchViewModel;

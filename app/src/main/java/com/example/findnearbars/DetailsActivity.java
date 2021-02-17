@@ -7,11 +7,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -22,13 +20,12 @@ import com.example.findnearbars.adapters.DetailImagesAdapter;
 import com.example.findnearbars.pojo.FavouriteResult;
 import com.example.findnearbars.pojo.Result;
 import com.example.findnearbars.ui.favourite.FavouriteViewModel;
-import com.example.findnearbars.ui.search.SearchViewModel;
 import com.google.gson.Gson;
 import com.yandex.mapkit.Animation;
 import com.yandex.mapkit.MapKitFactory;
 import com.yandex.mapkit.geometry.Point;
 import com.yandex.mapkit.map.CameraPosition;
-import com.yandex.mapkit.mapview.MapView;
+import com.yandex.runtime.image.ImageProvider;
 
 import java.util.List;
 
@@ -38,6 +35,7 @@ import java.util.List;
 //todo : при нажатии на адрес открывать навигатор
 // todo : при добавлении в избарнное изменить надпись
 // todo: при удалении из избарнного изменить надпись
+// todo : измеить точку на нормальный значок
 
 public class DetailsActivity extends AppCompatActivity {
     private Result currentResult;
@@ -85,7 +83,7 @@ public class DetailsActivity extends AppCompatActivity {
         }
 
         Point point = new Point(currentResult.getCoords().getLat(),currentResult.getCoords().getLon());
-        mapview.getMap().getMapObjects().addPlacemark(point);
+        mapview.getMap().getMapObjects().addPlacemark(point, ImageProvider.fromResource(this,R.drawable.placeholder));
 
         mapview.getMap().move(
                 new CameraPosition(point, 15.0f, 0.0f, 0.0f),

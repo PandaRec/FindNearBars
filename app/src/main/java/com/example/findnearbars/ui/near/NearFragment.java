@@ -49,6 +49,8 @@ import java.util.Map;
 import java.util.TreeMap;
 // todo : добавить карту с меткой пользователя и скзать, что он тут
 import static android.content.Context.LOCATION_SERVICE;
+// todo: сделать карту с гео пользователя
+// todo : дать возможность изменить текущую гео
 
 public class NearFragment extends Fragment {
 
