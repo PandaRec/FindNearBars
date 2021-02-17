@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -25,6 +27,7 @@ import android.widget.Toast;
 import com.example.findnearbars.adapters.DetailImagesAdapter;
 import com.example.findnearbars.pojo.FavouriteResult;
 import com.example.findnearbars.pojo.Result;
+import com.example.findnearbars.ui.favourite.FavouriteFragment;
 import com.example.findnearbars.ui.favourite.FavouriteViewModel;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
@@ -37,10 +40,6 @@ import com.yandex.runtime.image.ImageProvider;
 
 import java.util.List;
 
-//todo : при нажатии на адрес открывать навигатор
-// todo : при добавлении в избарнное изменить надпись
-// todo : при удалении из избарнного изменить надпись
-//todo : добавить эффекта нажатия на поля
 
 public class DetailsActivity extends AppCompatActivity {
     private Result currentResult;
@@ -130,11 +129,22 @@ public class DetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(favouriteResult==null){
                     favouriteViewModel.insertFavouriteResult(new FavouriteResult(currentResult));
-                    Toast.makeText(DetailsActivity.this, "added", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar.make(v,"Добавлено в избранное",Snackbar.LENGTH_LONG);
+
+                    snackbar.setBackgroundTint(getResources().getColor(R.color.gray,null));
+                    snackbar.setActionTextColor(getResources().getColor(R.color.black,null));
+                    snackbar.setTextColor(getResources().getColor(R.color.black,null));
+                    snackbar.show();
 
                 }else {
                     favouriteViewModel.deleteFavouriteResult(new FavouriteResult(currentResult));
-                    Toast.makeText(DetailsActivity.this, "removed", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar.make(v,"Удалено из избранного",Snackbar.LENGTH_LONG);
+
+                    snackbar.setBackgroundTint(getResources().getColor(R.color.gray,null));
+                    snackbar.setActionTextColor(getResources().getColor(R.color.black,null));
+                    snackbar.setTextColor(getResources().getColor(R.color.black,null));
+                    snackbar.show();
+
                 }
                 setFavourite();
             }

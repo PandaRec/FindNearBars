@@ -20,7 +20,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import java.util.ArrayList;
-//todo : загрузка только в первом запсуке
 public class MainActivity extends AppCompatActivity {
     private MainViewModel mainViewModel;
 

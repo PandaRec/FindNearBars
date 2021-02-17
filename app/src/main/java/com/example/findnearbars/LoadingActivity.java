@@ -21,7 +21,6 @@ import com.example.findnearbars.pojo.Result;
 
 import java.util.ArrayList;
 import java.util.List;
-// todo : изменить цвет активити
 public class LoadingActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;

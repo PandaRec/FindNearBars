@@ -93,6 +93,8 @@
             tools:text="fffffffff"
             android:padding="12dp"
             android:textColor="@color/black"
+            android:background="?android:attr/selectableItemBackground"
+
             />
         <ImageView
             android:id="@+id/imageViewMoreAddress"
@@ -252,6 +254,8 @@
             tools:text="fffffffff"
             android:padding="12dp"
             android:textColor="@color/black"
+            android:background="?android:attr/selectableItemBackground"
+
             />
 
             <ImageView
@@ -304,6 +308,7 @@
             android:text="Нажмите для перехода на сайт"
             android:padding="12dp"
             android:textColor="@color/black"
+            android:background="?android:attr/selectableItemBackground"
             />
 
             <ImageView
