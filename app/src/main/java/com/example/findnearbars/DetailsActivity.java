@@ -1,5 +1,6 @@
 package com.example.findnearbars;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -7,10 +8,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -20,6 +26,8 @@ import com.example.findnearbars.adapters.DetailImagesAdapter;
 import com.example.findnearbars.pojo.FavouriteResult;
 import com.example.findnearbars.pojo.Result;
 import com.example.findnearbars.ui.favourite.FavouriteViewModel;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.yandex.mapkit.Animation;
 import com.yandex.mapkit.MapKitFactory;
@@ -36,6 +44,7 @@ import java.util.List;
 // todo : при добавлении в избарнное изменить надпись
 // todo : при удалении из избарнного изменить надпись
 // todo: если больше одного тлф, то надо их сплитнуть как то
+//todo : добавить эффекта нажатия на поля
 
 public class DetailsActivity extends AppCompatActivity {
     private Result currentResult;
@@ -52,6 +61,14 @@ public class DetailsActivity extends AppCompatActivity {
     private CustomMapView mapview;
     private ScrollView mainScrollView;
     private ImageView imageViewFavourite;
+
+    private ImageView imageViewMorePhone;
+    private ImageView imageViewMoreSite;
+    private ImageView imageViewMoreAddress;
+
+    private TextView textViewDialogPhone1;
+    private TextView textViewDialogPhone2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +115,15 @@ public class DetailsActivity extends AppCompatActivity {
         textViewSite = findViewById(R.id.textViewSite);
         mainScrollView =  findViewById(R.id.scrollView);
         imageViewFavourite = findViewById(R.id.imageViewfavourite);
+        imageViewMoreAddress = findViewById(R.id.imageViewMoreAddress);
+        imageViewMorePhone = findViewById(R.id.imageViewMorePhone);
+        imageViewMoreSite = findViewById(R.id.imageViewMoreSite);
+
+
+//        textViewDialogPhone1 = findViewById(R.id.textViewDialogPhone1);
+//        textViewDialogPhone2 = findViewById(R.id.textViewDialogPhone2);
+
+
 
         favouriteViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(FavouriteViewModel.class);
         favouriteViewModel.createFavouriteViewModel(this);
@@ -125,7 +151,13 @@ public class DetailsActivity extends AppCompatActivity {
         recyclerViewImages.setAdapter(adapter);
         recyclerViewImages.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         adapter.setResults(currentResult.getImages());
-        setInformationToElements();
+
+
+        textViewTitle.setText(currentResult.getTitle());
+        textViewAddress.setText(currentResult.getAddress());
+        textViewTimetable.setText(currentResult.getTimetable());
+        textViewPhone.setText(currentResult.getPhone());
+        //textViewSite.setText(currentResult.getSiteUrl());
 
 
         recyclerViewImages.setBackgroundColor(getResources().getColor(R.color.gray));
@@ -150,13 +182,6 @@ public class DetailsActivity extends AppCompatActivity {
 
     }
 
-    private void setInformationToElements() {
-        textViewTitle.setText(currentResult.getTitle());
-        textViewAddress.setText(currentResult.getAddress());
-        textViewTimetable.setText(currentResult.getTimetable());
-        textViewPhone.setText(currentResult.getPhone());
-        textViewSite.setText(currentResult.getSiteUrl());
-    }
     @Override
     protected void onStop() {
         super.onStop();
@@ -171,6 +196,146 @@ public class DetailsActivity extends AppCompatActivity {
         MapKitFactory.getInstance().onStart();
 
     }
+
+    @Override
+    protected void onResume() {
+        textViewPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPhone(v);
+
+            }
+        });
+        textViewAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMap();
+
+            }
+        });
+        textViewSite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToBrowser();
+
+            }
+        });
+        imageViewMoreSite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToBrowser();
+
+            }
+        });
+        imageViewMorePhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToPhone(v);
+
+            }
+        });
+        imageViewMoreAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToMap();
+
+            }
+        });
+
+        super.onResume();
+    }
+
+    private void goToPhone(View view){
+        String[] phones = currentResult.getPhone().split(",");
+        /*
+        if(phones.length==2){
+            // 2 phones numbers
+            Snackbar snackbar = Snackbar.make(view, "По какому будем звонить?", Snackbar.LENGTH_LONG);
+            snackbar.setAction("1", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String phone = "tel:"+phones[0];
+                    startActivity(new Intent(Intent.ACTION_DIAL,Uri.parse(phone)));
+
+                }
+            });
+            snackbar.setAction("2", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String phone = "tel:"+phones[1];
+                    startActivity(new Intent(Intent.ACTION_DIAL,Uri.parse(phone)));
+                }
+            });
+            snackbar.show();
+
+        }
+        else {
+            //one phone numbers
+            String phone = "tel:"+currentResult.getPhone();
+            startActivity(new Intent(Intent.ACTION_DIAL,Uri.parse(phone)));
+
+        }
+*/
+        if(phones.length==2) {
+
+            LayoutInflater layoutInflater = getLayoutInflater();
+            View alertLayout = layoutInflater.inflate(R.layout.custom_dialog, null);
+            TextView textViewPhone1 = alertLayout.findViewById(R.id.textViewDialogPhone1);
+            TextView textViewPhone2 = alertLayout.findViewById(R.id.textViewDialogPhone2);
+            textViewPhone1.setText(phones[0]);
+            textViewPhone2.setText(phones[1]);
+
+
+            //AlertDialog.Builder alertDialog = new AlertDialog.Builder(DetailsActivity.this,R.style.MyThemeOverlay_MaterialComponents_MaterialAlertDialog);
+            MaterialAlertDialogBuilder alertDialog = new MaterialAlertDialogBuilder(DetailsActivity.this,R.style.MyThemeOverlay_MaterialComponents_MaterialAlertDialog);
+
+
+            alertDialog.setCancelable(true);
+            alertDialog.setView(alertLayout);
+            //AlertDialog dialog = alertDialog.create();
+            AlertDialog dialog = alertDialog.create();
+
+
+
+
+            textViewPhone1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    String phone = "tel:" + phones[0];
+                    startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(phone)));
+                }
+            });
+            textViewPhone2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                    String phone = "tel:" + phones[1];
+                    startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(phone)));
+
+                }
+            });
+//        button.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                dialog.dismiss();
+//            }
+//        });
+            dialog.show();
+        }else {
+            String phone = "tel:"+currentResult.getPhone();
+            startActivity(new Intent(Intent.ACTION_DIAL,Uri.parse(phone)));
+        }
+
+    }
+    private void goToMap(){
+
+    }
+    private void goToBrowser(){
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(currentResult.getSiteUrl())));
+
+    }
+
     private void setFavourite(){
         favouriteResult = favouriteViewModel.getFavouriteResultById(currentResult.getId());
         if(favouriteResult==null){

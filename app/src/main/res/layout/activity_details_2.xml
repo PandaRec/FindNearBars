@@ -141,18 +141,17 @@
 
         <TextView
             android:id="@+id/textViewTitle"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:text="fffffffff"
             android:padding="12dp"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/imageViewMoreTitle"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             />
 
-            <ImageView
+            <!--<ImageView
                 android:id="@+id/imageViewMoreTitle"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -161,7 +160,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="8dp"
-                />
+                />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -194,18 +193,17 @@
 
         <TextView
             android:id="@+id/textViewTimetable"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/imageViewMoreTimetable"
             tools:text="fffffffff"
             android:padding="12dp"
             android:textColor="@color/black"
             />
 
-            <ImageView
+           <!-- <ImageView
                 android:id="@+id/imageViewMoreTimetable"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -214,7 +212,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="8dp"
-                />
+                />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -303,7 +301,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/imageViewMoreSite"
-            tools:text="fffffffff"
+            android:text="Нажмите для перехода на сайт"
             android:padding="12dp"
             android:textColor="@color/black"
             />
