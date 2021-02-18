@@ -3,6 +3,17 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="text_view_label_title">Название</string>
+    <string name="text_view_label_address">Адрес:</string>
+    <string name="text_view_label_timetable">Время работы:</string>
+    <string name="text_view_label_phone">Телефон:</string>
+    <string name="text_view_label_site">Сайт:</string>
+    <string name="image_view_description_more">иконка знака больше</string>
+    <string name="image_view_description_add_to_favorite">иконка знака добавить в избарнное</string>
+    <string name="image_view_description_photo_of_bar">изображение заведение</string>
+    <string name="image_view_description_icon_of_title">иконка названия</string>
+    <string name="image_view_description_icon_of_address">иконка адреса</string>
+    <string name="image_view_description_icon_of_distance">иконка расстояния</string>
     <string-array name="distance_items">
         <item>10м</item>
         <item>50м</item>

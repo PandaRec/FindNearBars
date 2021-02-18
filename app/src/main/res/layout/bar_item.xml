@@ -21,7 +21,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:adjustViewBounds="true"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/image_view_description_photo_of_bar"/>
 
     <ImageView
         android:id="@+id/imageViewTitle"
@@ -34,6 +35,7 @@
         app:layout_constraintStart_toEndOf="@id/imageViewShort"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:contentDescription="@string/image_view_description_icon_of_title"
 
         />
 
@@ -48,13 +50,13 @@
         app:layout_constraintStart_toEndOf="@id/imageViewShort"
         android:layout_marginStart="8dp"
         android:layout_marginTop="14dp"
+        android:contentDescription="@string/image_view_description_icon_of_address"
         />
 
     <TextView
         android:id="@+id/textViewShortTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
         app:layout_constraintTop_toTopOf="@id/imageViewTitle"
         app:layout_constraintBottom_toBottomOf="@id/imageViewTitle"
         app:layout_constraintStart_toEndOf="@id/imageViewTitle"
@@ -66,7 +68,6 @@
         android:id="@+id/textViewShortAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
         app:layout_constraintTop_toTopOf="@id/imageViewAddress"
         app:layout_constraintBottom_toBottomOf="@id/imageViewAddress"
         app:layout_constraintStart_toEndOf="@id/imageViewAddress"

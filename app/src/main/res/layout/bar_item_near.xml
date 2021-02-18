@@ -22,7 +22,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:adjustViewBounds="true"
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/image_view_description_photo_of_bar"/>
 
         <ImageView
             android:id="@+id/imageViewTitleNear"
@@ -35,7 +36,7 @@
             app:layout_constraintStart_toEndOf="@id/imageViewShortNear"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-
+            android:contentDescription="@string/image_view_description_icon_of_title"
             />
 
         <ImageView
@@ -49,6 +50,7 @@
             app:layout_constraintStart_toEndOf="@id/imageViewShortNear"
             android:layout_marginStart="8dp"
             android:layout_marginTop="14dp"
+            android:contentDescription="@string/image_view_description_icon_of_address"
             />
         <ImageView
             android:id="@+id/imageViewDistanceNear"
@@ -61,13 +63,13 @@
             app:layout_constraintStart_toEndOf="@id/imageViewShortNear"
             android:layout_marginStart="8dp"
             android:layout_marginTop="14dp"
+            android:contentDescription="@string/image_view_description_icon_of_distance"
             />
 
         <TextView
             android:id="@+id/textViewShortTitleNear"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="TextView"
             app:layout_constraintTop_toTopOf="@id/imageViewTitleNear"
             app:layout_constraintBottom_toBottomOf="@id/imageViewTitleNear"
             app:layout_constraintStart_toEndOf="@id/imageViewTitleNear"
@@ -79,7 +81,6 @@
             android:id="@+id/textViewShortAddressNear"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="TextView"
             app:layout_constraintTop_toTopOf="@id/imageViewAddressNear"
             app:layout_constraintBottom_toBottomOf="@id/imageViewAddressNear"
             app:layout_constraintStart_toEndOf="@id/imageViewAddressNear"
@@ -91,7 +92,6 @@
             android:id="@+id/textViewShortDistanceNear"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="TextView"
             app:layout_constraintTop_toTopOf="@id/imageViewDistanceNear"
             app:layout_constraintBottom_toBottomOf="@id/imageViewDistanceNear"
             app:layout_constraintStart_toEndOf="@id/imageViewTitleNear"
