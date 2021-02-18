@@ -14,6 +14,19 @@
     <string name="image_view_description_icon_of_title">иконка названия</string>
     <string name="image_view_description_icon_of_address">иконка адреса</string>
     <string name="image_view_description_icon_of_distance">иконка расстояния</string>
+    <string name="text_view_label_what_number_are_colling">По какому номеру будем звонить?</string>
+    <string name="image_view_icon_of_phone">иконка телефона</string>
+    <string name="image_view_description_photo_of_bar_for_details">изображение бара для details</string>
+    <string name="image_view_description_counter_of_favorite">количество людей которые добавили в избранное</string>
+    <string name="text_view_i_am_here">Я тут</string>
+    <string name="text_view_find_bar">Найти заведения</string>
+    <string name="edit_text_hint_enter_distance">Введите расстояние в метрах</string>
+    <string name="image_view_description_icon_search">иконка лупы</string>
+    <string name="text_view_label_contacts">Контакты</string>
+    <string name="image_view_description_github">иконка гитхаба</string>
+    <string name="image_view_description_icon_of_mail">иконка почты</string>
+    <string name="text_view_label_refresh">Обновить данные</string>
+    <string name="image_view_description_refresh">иконка обноления</string>
     <string-array name="distance_items">
         <item>10м</item>
         <item>50м</item>

@@ -13,4 +13,5 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars"
     android:adjustViewBounds="true"
+    android:contentDescription="@string/image_view_description_photo_of_bar_for_details"
     />
