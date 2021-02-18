@@ -55,7 +55,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 import static android.content.Context.LOCATION_SERVICE;
-
 public class NearFragment extends Fragment {
 
     private TextView textViewNearSearch;
@@ -184,6 +183,8 @@ public class NearFragment extends Fragment {
                         currentCoords = new Coords();
                     currentCoords.setLat(location.getLatitude());
                     currentCoords.setLon(location.getLongitude());
+                        mapObjectCollection.clear();
+
                         PlacemarkMapObject placemark = mapObjectCollection.addPlacemark(new Point(location.getLatitude(),location.getLongitude()),ImageProvider.fromResource(getContext(),R.drawable.placeholder));
 
                         mapview.getMap().move(
@@ -199,6 +200,8 @@ public class NearFragment extends Fragment {
                         currentCoords.setLon(location.getLongitude());
                         Log.i("my_rez", (String.valueOf(location.getLatitude())));
                         Log.i("my_rez", (String.valueOf(location.getLongitude())));
+                        mapObjectCollection.clear();
+
                         PlacemarkMapObject placemark = mapObjectCollection.addPlacemark(new Point(location.getLatitude(),location.getLongitude()),ImageProvider.fromResource(getContext(),R.drawable.placeholder));
                         mapview.getMap().move(
                                 new CameraPosition(new Point(location.getLatitude(),location.getLongitude()), 18.0f, 0.0f, 0.0f),
@@ -392,6 +395,8 @@ public class NearFragment extends Fragment {
         if(result.size()==0){
             Snackbar.make(getView(), "Ничего не нашли \uD83D\uDE13", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
+            editTextDistance.setVisibility(View.VISIBLE);
+            imageViewFind.setVisibility(View.VISIBLE);
             return;
         }
         for(Double dist: result.keySet()){
