@@ -1,17 +1,13 @@
 package com.example.findnearbars.ui.near;
 
-import android.app.Application;
 import android.content.Context;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.findnearbars.data.AppDatabase;
 import com.example.findnearbars.pojo.Coords;
 import com.example.findnearbars.pojo.Result;
-import com.google.android.material.resources.MaterialAttributes;
 
 import java.util.ArrayList;
 import java.util.HashMap;

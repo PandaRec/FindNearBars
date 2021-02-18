@@ -2,16 +2,12 @@ package com.example.findnearbars.ui.favourite;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.loader.content.AsyncTaskLoader;
 
 import com.example.findnearbars.data.AppDatabase;
 import com.example.findnearbars.pojo.FavouriteResult;
-import com.example.findnearbars.pojo.Result;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +18,6 @@ import com.example.findnearbars.DetailsActivity;
 import com.example.findnearbars.R;
 import com.example.findnearbars.adapters.FavoriteAdapter;
 import com.example.findnearbars.pojo.FavouriteResult;
-import com.example.findnearbars.ui.search.SearchViewModel;
 import com.google.gson.Gson;
 
 import java.util.List;

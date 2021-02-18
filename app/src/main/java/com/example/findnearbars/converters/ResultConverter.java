@@ -1,7 +1,6 @@
 package com.example.findnearbars.converters;
 
 import androidx.room.TypeConverter;
-import androidx.room.TypeConverters;
 
 import com.example.findnearbars.pojo.Coords;
 import com.example.findnearbars.pojo.Image;

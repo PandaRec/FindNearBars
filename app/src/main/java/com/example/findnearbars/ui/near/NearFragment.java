@@ -8,8 +8,6 @@ import android.content.pm.PackageManager;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.speech.RecognitionService;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -26,17 +24,14 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.loader.app.LoaderManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.findnearbars.CustomMapView;
 import com.example.findnearbars.DetailsActivity;
 import com.example.findnearbars.R;
-import com.example.findnearbars.adapters.SearchAdapter;
 import com.example.findnearbars.adapters.SearchDistanceAdapter;
 import com.example.findnearbars.pojo.Coords;
 import com.example.findnearbars.pojo.Result;
@@ -48,13 +43,13 @@ import com.yandex.mapkit.geometry.Point;
 import com.yandex.mapkit.map.CameraPosition;
 import com.yandex.mapkit.map.InputListener;
 import com.yandex.mapkit.map.Map;
-import com.yandex.mapkit.map.MapObject;
 import com.yandex.mapkit.map.MapObjectCollection;
 import com.yandex.mapkit.map.PlacemarkMapObject;
 import com.yandex.runtime.image.ImageProvider;
 
 import android.location.Location;
 import android.location.LocationListener;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -287,31 +282,42 @@ public class NearFragment extends Fragment {
         textViewNearSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textViewNearSearch.setVisibility(View.GONE);
-                mapview.setVisibility(View.GONE);
-                imageViewNearSearch.setVisibility(View.GONE);
-                textViewNearLable.setVisibility(View.GONE);
-                cardViewNear.setVisibility(View.GONE);
+                if(currentCoords!=null || currentGeo!=null) {
 
-                editTextDistance.setVisibility(View.VISIBLE);
-                recyclerViewNear.setVisibility(View.VISIBLE);
-                imageViewFind.setVisibility(View.VISIBLE);
+
+                    textViewNearSearch.setVisibility(View.GONE);
+                    mapview.setVisibility(View.GONE);
+                    imageViewNearSearch.setVisibility(View.GONE);
+                    textViewNearLable.setVisibility(View.GONE);
+                    cardViewNear.setVisibility(View.GONE);
+
+                    editTextDistance.setVisibility(View.VISIBLE);
+                    recyclerViewNear.setVisibility(View.VISIBLE);
+                    imageViewFind.setVisibility(View.VISIBLE);
+                }else {
+                    Toast.makeText(getContext(), "Укажите ваше местоположение", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         imageViewNearSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(currentCoords!=null || currentGeo!=null) {
 
-                textViewNearSearch.setVisibility(View.GONE);
-                mapview.setVisibility(View.GONE);
-                imageViewNearSearch.setVisibility(View.GONE);
-                textViewNearLable.setVisibility(View.GONE);
-                cardViewNear.setVisibility(View.GONE);
+                    textViewNearSearch.setVisibility(View.GONE);
+                    mapview.setVisibility(View.GONE);
+                    imageViewNearSearch.setVisibility(View.GONE);
+                    textViewNearLable.setVisibility(View.GONE);
+                    cardViewNear.setVisibility(View.GONE);
 
-                editTextDistance.setVisibility(View.VISIBLE);
-                recyclerViewNear.setVisibility(View.VISIBLE);
-                imageViewFind.setVisibility(View.VISIBLE);
+                    editTextDistance.setVisibility(View.VISIBLE);
+                    recyclerViewNear.setVisibility(View.VISIBLE);
+                    imageViewFind.setVisibility(View.VISIBLE);
+                }else {
+                    Toast.makeText(getContext(), "Укажите ваше местоположение", Toast.LENGTH_SHORT).show();
+
+                }
 
             }
         });

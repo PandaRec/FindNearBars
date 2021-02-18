@@ -1,26 +1,17 @@
 package com.example.findnearbars;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.core.widget.ContentLoadingProgressBar;
+
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.icu.text.SearchIterator;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ArrayAdapter;
+
 import android.widget.ProgressBar;
 
-import com.example.findnearbars.converters.ResultConverter;
-import com.example.findnearbars.pojo.Image;
-import com.example.findnearbars.pojo.Result;
-
-import java.util.ArrayList;
-import java.util.List;
 public class LoadingActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;

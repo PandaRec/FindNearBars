@@ -1,25 +1,16 @@
 package com.example.findnearbars;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-
-import com.example.findnearbars.converters.ResultConverter;
-import com.example.findnearbars.pojo.Image;
-import com.example.findnearbars.pojo.Source;
-import com.example.findnearbars.ui.search.SearchFragment;
+;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private MainViewModel mainViewModel;
 

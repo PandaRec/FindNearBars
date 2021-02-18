@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.findnearbars.R;
 import com.example.findnearbars.pojo.FavouriteResult;
-import com.example.findnearbars.pojo.Result;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

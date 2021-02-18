@@ -1,6 +1,5 @@
 package com.example.findnearbars;
 
-import android.annotation.SuppressLint;
 import android.app.Application;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -9,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.findnearbars.api.ApiFactory;
 import com.example.findnearbars.api.ApiService;
@@ -18,9 +16,7 @@ import com.example.findnearbars.pojo.Response;
 import com.example.findnearbars.pojo.Result;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
-import io.reactivex.Scheduler;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
