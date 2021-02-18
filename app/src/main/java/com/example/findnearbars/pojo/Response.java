@@ -6,7 +6,6 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Response {
-    //Todo : create autoincrement id
     @SerializedName("count")
     @Expose
     private int count;
